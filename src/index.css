@@ -1,0 +1,37 @@
+/* index.css (or global.css) */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Print Styles */
+@media print {
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+
+  body * {
+    visibility: hidden;
+  }
+
+  #print-area {
+    position: absolute;
+    left: 0;
+    top: 0;
+    margin: 0;
+    height: 5in !important;   /* Full height */
+    width: 4in !important;    /* Full width */
+    overflow: hidden;
+    visibility: visible;
+  }
+
+  #print-area * {
+    visibility: visible;
+  }
+}
+
+/* Force paper size */
+@page {
+  size: 4in 5in !important;   /* Width × Height */
+  margin: 0 !important;
+}

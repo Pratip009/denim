@@ -33,24 +33,28 @@ const Bill = () => {
       >
         <table className="w-full border-collapse border border-black text-lg flex-grow">
           <tbody>
-            {["sortNo","grade","rollNo","length","width","grossWt"].map((field, i) => (
-              <tr key={i}>
-                <td className="border border-black p-1 font-bold">
-                  {field === "sortNo" ? "Sort No"
-                    : field === "grossWt" ? "Gross Wt."
-                    : field.charAt(0).toUpperCase() + field.slice(1)}
-                </td>
-                <td className="border border-black p-1">
-                  <input
-                    type="text"
-                    name={field}
-                    value={formData[field]}
-                    onChange={handleChange}
-                    className="w-full text-center outline-none print:border-none"
-                  />
-                </td>
-              </tr>
-            ))}
+            {["sortNo", "grade", "rollNo", "length", "width", "grossWt"].map(
+              (field, i) => (
+                <tr key={i}>
+                  <td className="border border-black p-1 font-bold">
+                    {field === "sortNo"
+                      ? "Sort No"
+                      : field === "grossWt"
+                      ? "Gross Wt."
+                      : field.charAt(0).toUpperCase() + field.slice(1)}
+                  </td>
+                  <td className="border border-black p-1">
+                    <input
+                      type="text"
+                      name={field}
+                      value={formData[field]}
+                      onChange={handleChange}
+                      className="w-full text-center outline-none print:border-none uppercase"
+                    />
+                  </td>
+                </tr>
+              )
+            )}
           </tbody>
         </table>
 

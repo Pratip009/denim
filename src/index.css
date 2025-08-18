@@ -1,4 +1,3 @@
-/* index.css (or global.css) */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -19,8 +18,8 @@
     left: 0;
     top: 0;
     margin: 0;
-    height: 5in !important;   /* Full height */
-    width: 4in !important;    /* Full width */
+    height: 5in !important;
+    width: 4in !important;
     overflow: hidden;
     visibility: visible;
   }
@@ -32,6 +31,6 @@
 
 /* Force paper size */
 @page {
-  size: 4in 5in !important;   /* Width × Height */
+  size: 4in 5in !important;
   margin: 0 !important;
 }

@@ -1,6 +1,6 @@
-// Bill.jsx
-import React, { useState } from "react";
-import logo from "./assets/denim.png"; // import logo
+import React, { useState, useRef } from "react";
+import { useReactToPrint } from "react-to-print";
+import logo from "./assets/denim.png";
 
 const Bill = () => {
   const [formData, setFormData] = useState({
@@ -12,105 +12,51 @@ const Bill = () => {
     grossWt: "",
   });
 
+  const componentRef = useRef();
+
+  // ✅ Use contentRef instead of content (for v3)
+  const handlePrint = useReactToPrint({
+    contentRef: componentRef,
+  });
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
-
-  const handlePrint = () => {
-    window.print();
   };
 
   return (
     <div className="flex flex-col items-center p-6">
       {/* Bill */}
       <div
+        ref={componentRef}
         id="print-area"
         className="w-[4in] h-[5in] p-2 border border-black flex flex-col justify-between"
       >
         <table className="w-full border-collapse border border-black text-lg flex-grow">
           <tbody>
-            <tr>
-              <td className="border border-black p-1 font-bold">Sort No</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="sortNo"
-                  value={formData.sortNo}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-black p-1 font-bold">Grade</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="grade"
-                  value={formData.grade}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-black p-1 font-bold">Roll No</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="rollNo"
-                  value={formData.rollNo}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-black p-1 font-bold">Length</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="length"
-                  value={formData.length}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-black p-1 font-bold">Width</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="width"
-                  value={formData.width}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
-            <tr>
-              <td className="border border-black p-1 font-bold">Gross Wt.</td>
-              <td className="border border-black p-1">
-                <input
-                  type="text"
-                  name="grossWt"
-                  value={formData.grossWt}
-                  onChange={handleChange}
-                  className="w-full outline-none print:border-none"
-                />
-              </td>
-            </tr>
+            {["sortNo","grade","rollNo","length","width","grossWt"].map((field, i) => (
+              <tr key={i}>
+                <td className="border border-black p-1 font-bold">
+                  {field === "sortNo" ? "Sort No"
+                    : field === "grossWt" ? "Gross Wt."
+                    : field.charAt(0).toUpperCase() + field.slice(1)}
+                </td>
+                <td className="border border-black p-1">
+                  <input
+                    type="text"
+                    name={field}
+                    value={formData[field]}
+                    onChange={handleChange}
+                    className="w-full text-center outline-none print:border-none"
+                  />
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
 
         {/* Logo Row at Bottom */}
         <div className="flex items-center justify-center mt-2">
-          <img
-            src={logo}
-            alt="ONE DENIM"
-            className="h-12 object-contain"
-          />
+          <img src={logo} alt="ONE DENIM" className="h-12 object-contain" />
         </div>
       </div>
 

@@ -63,7 +63,7 @@ const Bill = () => {
                       value={formData[field]}
                       onChange={handleChange}
                       onKeyDown={(e) => handleKeyDown(e, i)}
-                      className="w-full text-center outline-none print:border-none uppercase font-bold"
+                      className="w-full text-center outline-none print:border-none uppercase font-extrabold"
                     />
                   </td>
                 </tr>

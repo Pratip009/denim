@@ -13,6 +13,7 @@ const Bill = () => {
   });
 
   const componentRef = useRef();
+  const inputRefs = useRef([]); // store refs of all inputs
 
   // ✅ Use contentRef instead of content (for v3)
   const handlePrint = useReactToPrint({
@@ -21,6 +22,17 @@ const Bill = () => {
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // ✅ Move focus to next input on Enter
+  const handleKeyDown = (e, index) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      const nextInput = inputRefs.current[index + 1];
+      if (nextInput) {
+        nextInput.focus();
+      }
+    }
   };
 
   return (
@@ -36,7 +48,7 @@ const Bill = () => {
             {["sortNo", "grade", "rollNo", "length", "width", "grossWt"].map(
               (field, i) => (
                 <tr key={i}>
-                  <td className="border border-black p-1 font-bold">
+                  <td className="border border-black p-1 font-extrabold">
                     {field === "sortNo"
                       ? "Sort No"
                       : field === "grossWt"
@@ -45,11 +57,13 @@ const Bill = () => {
                   </td>
                   <td className="border border-black p-1">
                     <input
+                      ref={(el) => (inputRefs.current[i] = el)} // assign ref
                       type="text"
                       name={field}
                       value={formData[field]}
                       onChange={handleChange}
-                      className="w-full text-center outline-none print:border-none uppercase"
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                      className="w-full text-center outline-none print:border-none uppercase font-bold"
                     />
                   </td>
                 </tr>

@@ -1,6 +1,7 @@
 import React, { useState, useRef } from "react";
 import { useReactToPrint } from "react-to-print";
 import logo from "./assets/denim.png";
+import barcode from "./assets/bar.jpg";
 
 const Bill = () => {
   const [formData, setFormData] = useState({
@@ -11,11 +12,10 @@ const Bill = () => {
     width: "",
     grossWt: "",
   });
-
+  const [displayOption, setDisplayOption] = useState("logo");
   const componentRef = useRef();
-  const inputRefs = useRef([]); // store refs of all inputs
+  const inputRefs = useRef([]);
 
-  // ✅ Use contentRef instead of content (for v3)
   const handlePrint = useReactToPrint({
     contentRef: componentRef,
   });
@@ -24,7 +24,6 @@ const Bill = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  // ✅ Move focus to next input on Enter
   const handleKeyDown = (e, index) => {
     if (e.key === "Enter") {
       e.preventDefault();
@@ -35,9 +34,27 @@ const Bill = () => {
     }
   };
 
+  const handleDisplayChange = (e) => {
+    setDisplayOption(e.target.value);
+  };
+
   return (
     <div className="flex flex-col items-center p-6">
-      {/* Bill */}
+      <div className="mb-4">
+        <label htmlFor="displayOption" className="mr-2 font-bold">
+          Display:
+        </label>
+        <select
+          id="displayOption"
+          value={displayOption}
+          onChange={handleDisplayChange}
+          className="border border-gray-300 rounded p-1"
+        >
+          <option value="logo">Logo</option>
+          <option value="barcode">Barcode</option>
+        </select>
+      </div>
+
       <div
         ref={componentRef}
         id="print-area"
@@ -57,7 +74,7 @@ const Bill = () => {
                   </td>
                   <td className="border border-black p-1">
                     <input
-                      ref={(el) => (inputRefs.current[i] = el)} // assign ref
+                      ref={(el) => (inputRefs.current[i] = el)}
                       type="text"
                       name={field}
                       value={formData[field]}
@@ -72,13 +89,30 @@ const Bill = () => {
           </tbody>
         </table>
 
-        {/* Logo Row at Bottom */}
         <div className="flex items-center justify-center mt-2">
-          <img src={logo} alt="ONE DENIM" className="h-12 object-contain" />
+          {displayOption === "logo" ? (
+            <img src={logo} alt="ONE DENIM" className="h-12 object-contain" />
+          ) : (
+            <div className="flex flex-col items-center">
+              <img
+                src={barcode}
+                alt="Barcode"
+                style={{ height: "48px", width: "150px", display: "block" }}
+              />
+
+              <span
+                className="text-sm font-normal mt-1"
+                style={{
+                  letterSpacing: ".5em",
+                }}
+              >
+                {formData.rollNo}
+              </span>
+            </div>
+          )}
         </div>
       </div>
 
-      {/* Print Button */}
       <button
         onClick={handlePrint}
         className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md"

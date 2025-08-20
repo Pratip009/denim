@@ -1,7 +1,3 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 /* Print Styles */
 @media print {
   body {
@@ -18,19 +14,34 @@
     left: 0;
     top: 0;
     margin: 0;
-    height: 6in !important;
-    width: 4.5in !important;
-    overflow: hidden;
+    height: 6in !important;   /* ✅ Full roll height */
+    width: 4in !important;    /* ✅ Full roll width */
     visibility: visible;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
   }
 
   #print-area * {
     visibility: visible;
   }
+
+  /* ✅ Make table fill height */
+  #print-area table {
+    width: 100% !important;
+    height: 100% !important;
+    font-size: 20pt !important;   /* Bigger text */
+    border: 2px solid black !important;
+  }
+
+  #print-area td {
+    padding: 12px !important;     /* More spacing */
+    font-size: 20pt !important;
+  }
 }
 
 /* Force paper size */
 @page {
-  size: 4.5in 6in !important;
+  size: 4in 6in !important;
   margin: 0 !important;
 }

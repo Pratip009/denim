@@ -114,7 +114,7 @@ const Bill = () => {
                         value={formData[field]}
                         onChange={handleChange}
                         onKeyDown={(e) => handleKeyDown(e, i)}
-                        className="w-full text-center outline-none print:border-none uppercase font-extrabold text-xl print:text-2xl"
+                        className="w-full text-center outline-none print:border-none uppercase font-bold text-3xl print:text-3xl"
                       />
                     </td>
                   </tr>
@@ -152,7 +152,10 @@ const Bill = () => {
                         : field.charAt(0).toUpperCase() + field.slice(1)}
                     </td>
                     {/* ✅ input spans across 2 columns for consistency */}
-                    <td colSpan={2} className="border border-black p-1 text-center">
+                    <td
+                      colSpan={2}
+                      className="border border-black p-1 text-center"
+                    >
                       <input
                         ref={(el) => (barcodeInputRefs.current[i] = el)}
                         type="text"

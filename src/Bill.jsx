@@ -99,14 +99,17 @@ const Bill = () => {
                   "grossWt",
                 ].map((field, i) => (
                   <tr key={i}>
-                    <td className="border border-black p-1 font-extrabold">
+                    {/* Label column wider */}
+                    <td className="border border-black p-1 font-extrabold w-1/3 text-center">
                       {field === "sortNo"
                         ? "Sort No"
                         : field === "grossWt"
                         ? "Gross Wt."
                         : field.charAt(0).toUpperCase() + field.slice(1)}
                     </td>
-                    <td className="border border-black p-1">
+
+                    {/* Input column smaller */}
+                    <td className="border border-black p-1 w-2/3">
                       <input
                         ref={(el) => (inputRefs.current[i] = el)}
                         type="text"

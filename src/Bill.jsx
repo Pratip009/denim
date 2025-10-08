@@ -301,13 +301,19 @@ const Bill = () => {
         {displayOption === "format2" && (
           <div
             id="logo-print-area-container"
-            className="flex flex-col items-center justify-start h-screen gap-2 p-2"
+            className="flex flex-col items-center justify-start h-screen p-0" // removed extra padding
+            style={{
+              gap: "2px", // minimal spacing between boxes
+            }}
           >
             {Array.from({ length: 3 }).map((_, index) => (
               <div
                 key={index}
-                className="flex flex-col items-center justify-center w-full border-4 border-gray-800"
-                style={{ flex: 1 }} // each box takes equal space
+                className="flex flex-col items-center justify-center w-full border-2 border-gray-800"
+                style={{
+                  flex: 1,
+                  margin: 0,
+                }}
               >
                 <input
                   type="text"
@@ -317,13 +323,24 @@ const Bill = () => {
                   }
                   className="font-extrabold text-center uppercase outline-none bg-transparent w-full"
                   style={{
-                    height: "100%", // fill the container height
-                    fontSize: "8vh", // dynamic font size relative to viewport height
-                    lineHeight: "1", // remove extra spacing
+                    height: "100%",
+                    fontSize: "60pt", // larger font size for print
+                    lineHeight: "1",
+                    border: "none",
                   }}
                 />
               </div>
             ))}
+            <style>{`
+      @media print {
+        #logo-print-area-container input {
+          font-size: 70pt !important; /* even larger for print output */
+        }
+        @page {
+          margin: 0; /* remove default printer margins */
+        }
+      }
+    `}</style>
           </div>
         )}
       </div>

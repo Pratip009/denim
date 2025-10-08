@@ -342,6 +342,7 @@ const Bill = () => {
         #logo-print-area-container input {
           font-size: 85pt !important;
           font-family: "Bebas Neue", sans-serif !important;
+          transform: scaleY(1.75);
         }
         @page {
           margin: 0;

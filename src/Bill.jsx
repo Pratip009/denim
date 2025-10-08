@@ -321,10 +321,10 @@ const Bill = () => {
                   onChange={(e) =>
                     setEditableLogoText(e.target.value.toUpperCase())
                   }
-                  className="font-extrabold text-center uppercase outline-none bg-transparent w-full"
+                  className="font-bold text-center uppercase outline-none bg-transparent w-full"
                   style={{
                     height: "100%",
-                    fontSize: "60pt", // larger font size for print
+                    fontSize: "50pt", 
                     lineHeight: "1",
                     border: "none",
                   }}
@@ -334,7 +334,7 @@ const Bill = () => {
             <style>{`
       @media print {
         #logo-print-area-container input {
-          font-size: 70pt !important; /* even larger for print output */
+          font-size: 60pt !important; /* even larger for print output */
         }
         @page {
           margin: 0; /* remove default printer margins */

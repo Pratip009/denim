@@ -340,7 +340,7 @@ const Bill = () => {
 
       @media print {
         #logo-print-area-container input {
-          font-size: 70pt !important;
+          font-size: 85pt !important;
           font-family: "Bebas Neue", sans-serif !important;
         }
         @page {

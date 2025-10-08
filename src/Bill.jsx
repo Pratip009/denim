@@ -301,9 +301,10 @@ const Bill = () => {
         {displayOption === "format2" && (
           <div
             id="logo-print-area-container"
-            className="flex flex-col items-center justify-start h-screen p-0" // removed extra padding
+            className="flex flex-col items-center justify-start h-screen p-0"
             style={{
               gap: "2px", // minimal spacing between boxes
+              fontFamily: '"Bebas Neue", sans-serif', // apply globally within the container
             }}
           >
             {Array.from({ length: 3 }).map((_, index) => (
@@ -324,20 +325,26 @@ const Bill = () => {
                   className="font-bold text-center uppercase outline-none bg-transparent w-full"
                   style={{
                     height: "100%",
-                    fontSize: "50pt", 
+                    fontSize: "50pt",
                     lineHeight: "1",
                     border: "none",
+                    fontFamily: '"Bebas Neue", sans-serif',
                   }}
                 />
               </div>
             ))}
+
+            {/* Font Import and Print Optimization */}
             <style>{`
+      @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&display=swap');
+
       @media print {
         #logo-print-area-container input {
-          font-size: 60pt !important; /* even larger for print output */
+          font-size: 70pt !important;
+          font-family: "Bebas Neue", sans-serif !important;
         }
         @page {
-          margin: 0; /* remove default printer margins */
+          margin: 0;
         }
       }
     `}</style>

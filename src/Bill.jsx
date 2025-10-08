@@ -151,85 +151,94 @@ const Bill = () => {
 
         {/* ✅ Barcode Mode */}
         {displayOption === "barcode" && (
-          <>
-            <table className="w-full border-collapse border border-black text-lg flex-grow">
-              <tbody>
-                {[
-                  "sortNo",
-                  "grade",
-                  "rollNo",
-                  "refNo",
-                  "length",
-                  "width",
-                  "grossWt",
-                ].map((field, i) => (
-                  <tr key={i}>
-                    <td className="border border-black p-1 font-extrabold w-1/3 text-center">
-                      {field === "sortNo"
-                        ? "Sort No"
-                        : field === "refNo"
-                        ? "Ref No"
-                        : field === "grossWt"
-                        ? "Gross Wt."
-                        : field.charAt(0).toUpperCase() + field.slice(1)}
-                    </td>
-                    <td
-                      colSpan={2}
-                      className="border border-black p-1 text-center"
-                    >
-                      <input
-                        ref={(el) => (barcodeInputRefs.current[i] = el)}
-                        type="text"
-                        name={field}
-                        value={barcodeData[field]}
-                        onChange={handleBarcodeChange}
-                        onKeyDown={(e) => handleKeyDown(e, i, barcodeInputRefs)}
-                        className="w-full text-center outline-none uppercase font-bold text-3xl"
-                      />
-                    </td>
-                  </tr>
-                ))}
-
-                <tr>
-                  <td className="border border-black p-1 font-extrabold text-center">
-                    No of Pcs
+          <table className="w-full border-collapse text-lg flex-grow">
+            <tbody>
+              {[
+                "sortNo",
+                "grade",
+                "rollNo",
+                "refNo",
+                "length",
+                "width",
+                "grossWt",
+              ].map((field, i) => (
+                <tr key={i}>
+                  <td className="border border-black p-1 font-extrabold w-1/3 text-center">
+                    {field === "sortNo"
+                      ? "Sort No"
+                      : field === "refNo"
+                      ? "Ref No"
+                      : field === "grossWt"
+                      ? "Gross Wt."
+                      : field.charAt(0).toUpperCase() + field.slice(1)}
                   </td>
-                  <td className="border border-black p-1">
+                  <td
+                    colSpan={2}
+                    className="border border-black p-1 text-center"
+                  >
                     <input
+                      ref={(el) => (barcodeInputRefs.current[i] = el)}
                       type="text"
-                      name="noOfPcs1"
-                      value={barcodeData.noOfPcs1}
+                      name={field}
+                      value={barcodeData[field]}
                       onChange={handleBarcodeChange}
-                      className="w-full text-center outline-none uppercase font-bold text-3xl"
-                    />
-                  </td>
-                  <td className="border border-black p-1">
-                    <input
-                      type="text"
-                      name="noOfPcs2"
-                      value={barcodeData.noOfPcs2}
-                      onChange={handleBarcodeChange}
+                      onKeyDown={(e) => handleKeyDown(e, i, barcodeInputRefs)}
                       className="w-full text-center outline-none uppercase font-bold text-3xl"
                     />
                   </td>
                 </tr>
-              </tbody>
-            </table>
+              ))}
 
-            <div className="flex flex-col items-center mt-2">
-              <img
-                src={barcode}
-                alt="Barcode"
-                style={{ height: "48px", width: "150px" }}
-              />
-              <span
-                className="mt-1 font-normal text-base"
-                style={{ letterSpacing: "0.5em" }}
-              >
-                {barcodeData.rollNo}
-              </span>
-            </div>
-          </>
+              <tr>
+                <td className="border border-black p-1 font-extrabold text-center">
+                  No of Pcs
+                </td>
+                <td className="border border-black p-1">
+                  <input
+                    type="text"
+                    name="noOfPcs1"
+                    value={barcodeData.noOfPcs1}
+                    onChange={handleBarcodeChange}
+                    className="w-full text-center outline-none uppercase font-bold text-3xl"
+                  />
+                </td>
+                <td className="border border-black p-1">
+                  <input
+                    type="text"
+                    name="noOfPcs2"
+                    value={barcodeData.noOfPcs2}
+                    onChange={handleBarcodeChange}
+                    className="w-full text-center outline-none uppercase font-bold text-3xl"
+                  />
+                </td>
+              </tr>
+
+              {/* New row for barcode + roll number */}
+              <tr>
+                <td className="border-2 border-black p-1 font-extrabold text-center">
+                  {/* Optional label */}
+                </td>
+                <td
+                  colSpan={2}
+                  className="border-2 border-black p-1 text-center"
+                >
+                  <div className="flex flex-col items-center">
+                    <img
+                      src={barcode}
+                      alt="Barcode"
+                      style={{ height: "48px", width: "150px" }}
+                    />
+                    <span
+                      className="mt-1 font-normal text-base"
+                      style={{ letterSpacing: "0.5em" }}
+                    >
+                      {barcodeData.rollNo}
+                    </span>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+          </table>
         )}
 
         {/* ✅ Format 1 (DOBBY Style) */}
@@ -291,17 +300,30 @@ const Bill = () => {
         {/* ✅ Format 2 (Editable Logo Style 6x4) */}
         {displayOption === "format2" && (
           <div
-            id="logo-print-area"
-            className="flex flex-col items-center justify-center border-4 border-gray-800"
+            id="logo-print-area-container"
+            className="flex flex-col items-center justify-start h-screen gap-2 p-2"
           >
-            <input
-              type="text"
-              value={editableLogoText}
-              onChange={(e) =>
-                setEditableLogoText(e.target.value.toUpperCase())
-              }
-              className="text-7xl font-bold text-center uppercase outline-none bg-transparent w-full h-full"
-            />
+            {Array.from({ length: 3 }).map((_, index) => (
+              <div
+                key={index}
+                className="flex flex-col items-center justify-center w-full border-4 border-gray-800"
+                style={{ flex: 1 }} // each box takes equal space
+              >
+                <input
+                  type="text"
+                  value={editableLogoText}
+                  onChange={(e) =>
+                    setEditableLogoText(e.target.value.toUpperCase())
+                  }
+                  className="font-extrabold text-center uppercase outline-none bg-transparent w-full"
+                  style={{
+                    height: "100%", // fill the container height
+                    fontSize: "8vh", // dynamic font size relative to viewport height
+                    lineHeight: "1", // remove extra spacing
+                  }}
+                />
+              </div>
+            ))}
           </div>
         )}
       </div>

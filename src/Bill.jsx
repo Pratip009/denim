@@ -83,12 +83,12 @@ const Bill = () => {
       <div
         ref={componentRef}
         id="print-area"
-        className="w-[4in] h-[5.5in] p-2 border border-black flex flex-col justify-between"
+        className="w-[4in] h-[5.5in] p-2 border-4 border-black flex flex-col justify-between"
       >
         {displayOption === "logo" ? (
           <>
             {/* Table for Logo Mode */}
-            <table className="w-full border-collapse border border-black text-lg flex-grow">
+            <table className="w-full border-collapse border-4 border-black text-[22px] flex-grow">
               <tbody>
                 {[
                   "sortNo",
@@ -100,7 +100,7 @@ const Bill = () => {
                 ].map((field, i) => (
                   <tr key={i}>
                     {/* Label column wider */}
-                    <td className="border border-black p-1 font-extrabold w-1/3 text-center">
+                    <td className="border-4 border-black p-1 font-extrabold w-1/3 text-center">
                       {field === "sortNo"
                         ? "Sort No"
                         : field === "grossWt"
@@ -109,7 +109,7 @@ const Bill = () => {
                     </td>
 
                     {/* Input column smaller */}
-                    <td className="border border-black p-1 w-2/3">
+                    <td className="border-4 border-black p-1 w-2/3">
                       <input
                         ref={(el) => (inputRefs.current[i] = el)}
                         type="text"

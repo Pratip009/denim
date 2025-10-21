@@ -1,5 +1,6 @@
 import Bill from './Bill'
 import './App.css'
+import PrintManager from './PrintManager'
 
 function App() {
  
@@ -7,7 +8,7 @@ function App() {
   return (
     <>
       <div>
-        <Bill />
+        <PrintManager />
       </div>
     </>
   )

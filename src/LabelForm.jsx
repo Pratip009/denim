@@ -58,7 +58,7 @@ const LabelForm = () => {
               ].map((field, i) => (
                 <tr key={field.key}>
                   <td
-                    className="border-2 border-black p-1 w-[40%] font-medium text-[28px] leading-snug tracking-wide"
+                    className="border-2 border-black p-1 w-[40%] font-medium text-[24px] leading-snug tracking-wide"
                     style={{
                       paddingLeft: "10px",
                       fontStretch: "condensed",
@@ -78,7 +78,7 @@ const LabelForm = () => {
                       value={formData[field.key]}
                       onChange={handleChange}
                       onKeyDown={(e) => handleKeyDown(e, i)}
-                      className="w-full outline-none uppercase font-medium text-[28px] leading-snug tracking-wide"
+                      className="w-full outline-none uppercase font-medium text-[25px] leading-snug tracking-wide"
                       style={{
                         paddingLeft: "10px",
                         fontStretch: "condensed",

@@ -48,17 +48,17 @@ const Bill = () => {
         </select>
       </div>
 
-      <div ref={componentRef} id="print-area" className="w-[4in] h-[5.5in] p-2 border-2 border-black flex flex-col justify-between">
+      <div ref={componentRef} id="print-area" className="w-[4in] h-[5.5in] p-2 border-4 border-black flex flex-col justify-between">
         {displayOption === "logo" ? (
           <>
-            <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
+            <table className="w-full border-collapse border-4 border-black text-[22px] flex-grow">
               <tbody>
                 {["sortNo", "grade", "rollNo", "length", "width", "grossWt"].map((field, i) => (
                   <tr key={i}>
-                    <td className="border-2 border-black p-1 font-extrabold w-1/3 text-center">
+                    <td className="border-4 border-black p-1 font-extrabold w-1/3 text-center">
                       {field === "sortNo" ? "Sort No" : field === "grossWt" ? "Gross Wt." : field.charAt(0).toUpperCase() + field.slice(1)}
                     </td>
-                    <td className="border-2 border-black p-1 w-2/3">
+                    <td className="border-4 border-black p-1 w-2/3">
                       <input ref={(el) => (inputRefs.current[i] = el)} type="text" name={field} value={formData[field]} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, i)} className="w-full text-center outline-none uppercase font-bold text-3xl" />
                     </td>
                   </tr>

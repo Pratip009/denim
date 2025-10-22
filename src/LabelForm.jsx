@@ -99,7 +99,7 @@ const LabelForm = () => {
               src={barcode}
               alt="Barcode"
               style={{
-                height: "70px",
+                height: "60px",
                 width: "100%",
                 objectFit: "fill",
                 display: "block",

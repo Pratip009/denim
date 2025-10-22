@@ -58,7 +58,7 @@ const LabelForm = () => {
               ].map((field, i) => (
                 <tr key={field.key}>
                   <td
-                    className="border-2 border-black p-1 w-[40%] font-medium text-[24px] leading-snug tracking-wide"
+                    className="border-2 border-black p-1 w-[41%] font-medium text-[25px] leading-snug tracking-wide"
                     style={{
                       paddingLeft: "10px",
                       fontStretch: "condensed",
@@ -70,7 +70,7 @@ const LabelForm = () => {
                   >
                     {field.label}
                   </td>
-                  <td className="border-2 border-black p-1 w-[60%]">
+                  <td className="border-2 border-black p-1 w-[59%]">
                     <input
                       ref={(el) => (inputRefs.current[i] = el)}
                       type="text"

@@ -19,7 +19,7 @@
     top: 0;
     margin: 0;
     height: 5.8in !important;
-    width: 3.6in !important;
+    width: 3.8in !important;
     overflow: hidden;
     visibility: visible;
     
@@ -32,6 +32,6 @@
 
 /* Force paper size */
 @page {
-  size: 3.6in 5.8in !important;
+  size: 3.8in 5.8in !important;
   margin: 0 !important;
 }

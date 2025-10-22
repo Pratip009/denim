@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { useReactToPrint } from "react-to-print";
-import barcode from "./assets/barcode.png"; // ✅ Local barcode image
+import barcode from "./assets/barcode.png";
 
 const LabelForm = () => {
   const componentRef = useRef();
@@ -37,14 +37,14 @@ const LabelForm = () => {
 
   return (
     <div className="flex flex-col items-center p-6">
-      {/* Printable area - same height as Bill */}
+      {/* Printable Label */}
       <div
         ref={componentRef}
         id="print-area"
-        className="w-[4in] h-[5.5in] p-2 border-4 border-black flex flex-col justify-between"
+        className="w-[4in] h-[5.5in] pl-0 pr-0 border-2 border-black flex flex-col justify-between"
       >
         {/* Data Table */}
-        <table className="w-full border-collapse border-4 border-black text-[22px] flex-grow">
+        <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
           <tbody>
             {[
               { key: "sortNo", label: "Sort No" },
@@ -56,10 +56,10 @@ const LabelForm = () => {
               { key: "noOfPcs", label: "No Of Pcs" },
             ].map((field, i) => (
               <tr key={field.key}>
-                <td className="border-4 border-black p-1 font-extrabold w-1/3 text-center">
+                <td className="border-2 border-black p-1 font-semibold w-1/3 text-center leading-tight">
                   {field.label}
                 </td>
-                <td className="border-4 border-black p-1 w-2/3">
+                <td className="border-2 border-black p-1 w-2/3">
                   <input
                     ref={(el) => (inputRefs.current[i] = el)}
                     type="text"
@@ -67,7 +67,12 @@ const LabelForm = () => {
                     value={formData[field.key]}
                     onChange={handleChange}
                     onKeyDown={(e) => handleKeyDown(e, i)}
-                    className="w-full text-center outline-none uppercase font-bold text-3xl"
+                    className="w-full text-center outline-none uppercase font-medium text-[28px] leading-snug tracking-wide"
+                    style={{
+                      fontStretch: "condensed", // ✅ makes text taller/narrower
+                      fontWeight: 700,           // ✅ less bold
+                      letterSpacing: "0.5px",
+                    }}
                   />
                 </td>
               </tr>
@@ -75,21 +80,24 @@ const LabelForm = () => {
           </tbody>
         </table>
 
-        {/* Barcode Section (Full width) */}
+        {/* Barcode Section */}
         <div className="flex flex-col items-center justify-center mt-3">
           <img
             src={barcode}
             alt="Barcode"
             style={{
-              height: "70px",         // a bit taller for clarity
-              width: "100%",          // ✅ Full width
-              objectFit: "fill",      // ✅ Stretches horizontally
+              height: "70px",
+              width: "100%",
+              objectFit: "fill",
               display: "block",
             }}
           />
           <div
-            className="mt-1 text-base font-normal uppercase"
-            style={{ letterSpacing: "normal" }}
+            className="mt-1 text-[18px] font-medium uppercase"
+            style={{
+              letterSpacing: "0.5px",
+              fontStretch: "semi-condensed",
+            }}
           >
             {formData.rollNo}
           </div>

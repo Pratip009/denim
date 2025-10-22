@@ -103,13 +103,17 @@ const LabelForm = () => {
                 width: "100%",
                 objectFit: "fill",
                 display: "block",
+                margin: 0, // ✅ no space below image
+                padding: 0,
               }}
             />
             <div
-              className="text-[22px] font-medium uppercase"
+              className="text-[22px] font-medium uppercase leading-none" // ✅ no line-height spacing
               style={{
                 letterSpacing: "1px",
                 fontStretch: "semi-condensed",
+                marginTop: "0px", // ✅ remove top gap
+                paddingTop: "0px",
               }}
             >
               {formData.rollNo}

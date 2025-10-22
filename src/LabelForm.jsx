@@ -42,7 +42,7 @@ const LabelForm = () => {
         <div
           ref={componentRef}
           id="print-area"
-          className="w-[3.5in] h-[5.7in] border-2 border-black flex flex-col justify-between bg-white"
+          className="w-[3.5in] h-[5.7in] border-4 border-l-0 border-r-0 border-t-0 border-black flex flex-col justify-between bg-white"
         >
           {/* Table Section */}
           <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
@@ -58,7 +58,7 @@ const LabelForm = () => {
               ].map((field, i) => (
                 <tr key={field.key}>
                   <td
-                    className="border-2 border-black p-1 w-[41%] font-medium text-[25px] leading-snug tracking-wide"
+                    className="border-4 border-black p-1 w-[41%] font-medium text-[24px] leading-snug tracking-wide"
                     style={{
                       paddingLeft: "10px",
                       fontStretch: "condensed",
@@ -70,7 +70,7 @@ const LabelForm = () => {
                   >
                     {field.label}
                   </td>
-                  <td className="border-2 border-black p-1 w-[59%]">
+                  <td className="border-4 border-black p-1 w-[59%]">
                     <input
                       ref={(el) => (inputRefs.current[i] = el)}
                       type="text"
@@ -78,7 +78,7 @@ const LabelForm = () => {
                       value={formData[field.key]}
                       onChange={handleChange}
                       onKeyDown={(e) => handleKeyDown(e, i)}
-                      className="w-full outline-none uppercase font-medium text-[25px] leading-snug tracking-wide"
+                      className="w-full outline-none uppercase font-medium text-[24px] leading-snug tracking-wide"
                       style={{
                         paddingLeft: "10px",
                         fontStretch: "condensed",
@@ -94,7 +94,7 @@ const LabelForm = () => {
           </table>
 
           {/* Barcode Section */}
-          <div className="flex flex-col items-center justify-center mb-6">
+          <div className="flex flex-col items-center justify-center border-4 border-b-0 border-t-0 border-black">
             <img
               src={barcode}
               alt="Barcode"
@@ -108,7 +108,7 @@ const LabelForm = () => {
             <div
               className="mt-1 text-[22px] font-medium uppercase"
               style={{
-                letterSpacing: "0.5px",
+                letterSpacing: "1px",
                 fontStretch: "semi-condensed",
               }}
             >

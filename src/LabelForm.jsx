@@ -32,19 +32,19 @@ const LabelForm = () => {
   };
 
   const handlePrint = useReactToPrint({
-    contentRef: componentRef,
+    content: () => componentRef.current,
   });
 
   return (
-    <div className="flex flex-col items-center p-6">
-      {/* Printable Label */}
-      <div className="px-[5px]">
+    <div className="flex flex-col items-center p-6 pt-0">
+      {/* Outer container with 5px padding */}
+      <div className="p-[5px] bg-white">
         <div
           ref={componentRef}
           id="print-area"
-          className="w-[4in] h-[5.5in] border-2 border-black flex flex-col justify-between"
+          className="w-[4in] h-[5.5in] border-2 border-black flex flex-col justify-between bg-white"
         >
-          {/* Data Table */}
+          {/* Table Section */}
           <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
             <tbody>
               {[
@@ -60,9 +60,11 @@ const LabelForm = () => {
                   <td
                     className="border-2 border-black p-1 w-[40%] font-medium text-[28px] leading-snug tracking-wide"
                     style={{
+                      paddingLeft: "10px",
                       fontStretch: "condensed",
                       letterSpacing: "0.5px",
-                      textAlign: "left", // ✅ aligned from start
+                      fontWeight: "700",
+                      textAlign: "left",
                       verticalAlign: "middle",
                     }}
                   >
@@ -78,10 +80,11 @@ const LabelForm = () => {
                       onKeyDown={(e) => handleKeyDown(e, i)}
                       className="w-full outline-none uppercase font-medium text-[28px] leading-snug tracking-wide"
                       style={{
+                        paddingLeft: "10px",
                         fontStretch: "condensed",
                         fontWeight: "700",
                         letterSpacing: "0.5px",
-                        textAlign: "left", // ✅ left-aligned text
+                        textAlign: "left",
                       }}
                     />
                   </td>
@@ -103,7 +106,7 @@ const LabelForm = () => {
               }}
             />
             <div
-              className="mt-1 text-[20px] font-medium uppercase"
+              className="mt-1 text-[22px] font-medium uppercase"
               style={{
                 letterSpacing: "0.5px",
                 fontStretch: "semi-condensed",
@@ -118,7 +121,7 @@ const LabelForm = () => {
       {/* Print Button */}
       <button
         onClick={handlePrint}
-        className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md"
+        className="mt-4 bg-blue-600 text-white px-6 py-2 rounded-lg shadow-md hover:bg-blue-700 transition"
       >
         Print
       </button>

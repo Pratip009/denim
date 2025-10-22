@@ -38,68 +38,79 @@ const LabelForm = () => {
   return (
     <div className="flex flex-col items-center p-6">
       {/* Printable Label */}
-      <div
-        ref={componentRef}
-        id="print-area"
-        className="w-[4in] h-[5.5in] pl-0 pr-0 border-2 border-black flex flex-col justify-between"
-      >
-        {/* Data Table */}
-        <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
-          <tbody>
-            {[
-              { key: "sortNo", label: "Sort No" },
-              { key: "grade", label: "Grade" },
-              { key: "rollNo", label: "Roll No" },
-              { key: "length", label: "Length" },
-              { key: "width", label: "Width" },
-              { key: "grossWt", label: "Gross Wt." },
-              { key: "noOfPcs", label: "No Of Pcs" },
-            ].map((field, i) => (
-              <tr key={field.key}>
-                <td className="border-2 border-black p-1 font-semibold w-1/3 text-center leading-tight">
-                  {field.label}
-                </td>
-                <td className="border-2 border-black p-1 w-2/3">
-                  <input
-                    ref={(el) => (inputRefs.current[i] = el)}
-                    type="text"
-                    name={field.key}
-                    value={formData[field.key]}
-                    onChange={handleChange}
-                    onKeyDown={(e) => handleKeyDown(e, i)}
-                    className="w-full text-center outline-none uppercase font-medium text-[28px] leading-snug tracking-wide"
+      <div className="px-[5px]">
+        <div
+          ref={componentRef}
+          id="print-area"
+          className="w-[4in] h-[5.5in] border-2 border-black flex flex-col justify-between"
+        >
+          {/* Data Table */}
+          <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">
+            <tbody>
+              {[
+                { key: "sortNo", label: "Sort No" },
+                { key: "grade", label: "Grade" },
+                { key: "rollNo", label: "Roll No" },
+                { key: "length", label: "Length" },
+                { key: "width", label: "Width" },
+                { key: "grossWt", label: "Gross Wt." },
+                { key: "noOfPcs", label: "No Of Pcs" },
+              ].map((field, i) => (
+                <tr key={field.key}>
+                  <td
+                    className="border-2 border-black p-1 w-[40%] font-medium text-[28px] leading-snug tracking-wide"
                     style={{
-                      fontStretch: "condensed", // ✅ makes text taller/narrower
-                      fontWeight: 700,           // ✅ less bold
+                      fontStretch: "condensed",
                       letterSpacing: "0.5px",
+                      textAlign: "left", // ✅ aligned from start
+                      verticalAlign: "middle",
                     }}
-                  />
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+                  >
+                    {field.label}
+                  </td>
+                  <td className="border-2 border-black p-1 w-[60%]">
+                    <input
+                      ref={(el) => (inputRefs.current[i] = el)}
+                      type="text"
+                      name={field.key}
+                      value={formData[field.key]}
+                      onChange={handleChange}
+                      onKeyDown={(e) => handleKeyDown(e, i)}
+                      className="w-full outline-none uppercase font-medium text-[28px] leading-snug tracking-wide"
+                      style={{
+                        fontStretch: "condensed",
+                        fontWeight: "700",
+                        letterSpacing: "0.5px",
+                        textAlign: "left", // ✅ left-aligned text
+                      }}
+                    />
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
 
-        {/* Barcode Section */}
-        <div className="flex flex-col items-center justify-center mt-3">
-          <img
-            src={barcode}
-            alt="Barcode"
-            style={{
-              height: "70px",
-              width: "100%",
-              objectFit: "fill",
-              display: "block",
-            }}
-          />
-          <div
-            className="mt-1 text-[18px] font-medium uppercase"
-            style={{
-              letterSpacing: "0.5px",
-              fontStretch: "semi-condensed",
-            }}
-          >
-            {formData.rollNo}
+          {/* Barcode Section */}
+          <div className="flex flex-col items-center justify-center mb-6">
+            <img
+              src={barcode}
+              alt="Barcode"
+              style={{
+                height: "70px",
+                width: "100%",
+                objectFit: "fill",
+                display: "block",
+              }}
+            />
+            <div
+              className="mt-1 text-[20px] font-medium uppercase"
+              style={{
+                letterSpacing: "0.5px",
+                fontStretch: "semi-condensed",
+              }}
+            >
+              {formData.rollNo}
+            </div>
           </div>
         </div>
       </div>

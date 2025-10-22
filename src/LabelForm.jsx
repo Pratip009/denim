@@ -106,7 +106,7 @@ const LabelForm = () => {
               }}
             />
             <div
-              className="mt-1 text-[22px] font-medium uppercase"
+              className="mt-0.5 text-[22px] font-medium uppercase"
               style={{
                 letterSpacing: "1px",
                 fontStretch: "semi-condensed",

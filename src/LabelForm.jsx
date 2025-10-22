@@ -112,7 +112,8 @@ const LabelForm = () => {
               style={{
                 letterSpacing: "1px",
                 fontStretch: "semi-condensed",
-                marginTop: "0px", // ✅ remove top gap
+                marginTop: "0px",
+                marginBottom:"5px", // ✅ remove top gap
                 paddingTop: "0px",
               }}
             >

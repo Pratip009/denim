@@ -115,6 +115,7 @@ const LabelForm = () => {
                 marginTop: "0px",
                 marginBottom:"5px", // ✅ remove top gap
                 paddingTop: "0px",
+                paddingBottom:"5px"
               }}
             >
               {formData.rollNo}

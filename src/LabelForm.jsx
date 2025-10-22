@@ -42,7 +42,7 @@ const LabelForm = () => {
         <div
           ref={componentRef}
           id="print-area"
-          className="w-[4in] h-[5.5in] border-2 border-black flex flex-col justify-between bg-white"
+          className="w-[3.8in] h-[5.5in] border-2 border-black flex flex-col justify-between bg-white"
         >
           {/* Table Section */}
           <table className="w-full border-collapse border-2 border-black text-[22px] flex-grow">

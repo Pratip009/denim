@@ -55,10 +55,10 @@ const Bill = () => {
               <tbody>
                 {["sortNo", "grade", "rollNo", "length", "width", "grossWt"].map((field, i) => (
                   <tr key={i}>
-                    <td className="border-4 border-black p-1 font-extrabold w-1/3 text-center">
+                    <td className="border-4 border-black p-3 font-extrabold w-[45%] text-start">
                       {field === "sortNo" ? "Sort No" : field === "grossWt" ? "Gross Wt." : field.charAt(0).toUpperCase() + field.slice(1)}
                     </td>
-                    <td className="border-4 border-black p-1 w-2/3">
+                    <td className="border-4 border-black p-1 w-[55%]">
                       <input ref={(el) => (inputRefs.current[i] = el)} type="text" name={field} value={formData[field]} onChange={handleChange} onKeyDown={(e) => handleKeyDown(e, i)} className="w-full text-center outline-none uppercase font-bold text-3xl" />
                     </td>
                   </tr>
